@@ -14,9 +14,4 @@ public class AppController {
         return "greeting";
     }
 
-    @GetMapping("/2")
-    public String greeting2(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
-    }
 }

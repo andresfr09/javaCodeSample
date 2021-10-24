@@ -11,8 +11,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class WeatherService {
     private static final Logger log = LoggerFactory.getLogger(WeatherService.class);
-    private final static String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
-    private final static String API_KEY = "fe740e8847085cae43cb559b7619bfe9";
+    private static final  String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
+    private static final  String API_KEY = "fe740e8847085cae43cb559b7619bfe9";
 
     public WeatherRoot getWeatherBy(String zip, String country) {
         RestTemplate restTemplate = new RestTemplate();

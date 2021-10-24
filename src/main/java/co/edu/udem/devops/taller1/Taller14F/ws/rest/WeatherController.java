@@ -1,6 +1,5 @@
 package co.edu.udem.devops.taller1.Taller14F.ws.rest;
 
-/* import edu.udem.prqrdrs.dto.PersonaDto; */
 import co.edu.udem.devops.taller1.Taller14F.ws.service.WeatherService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -52,12 +51,14 @@ public class WeatherController {
             response = String.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Delete los datos del clima JSON"),})
-    @RequestMapping(value = "/deleteByZipAndCountry/{zip}/{country}", method = RequestMethod.DELETE)
+
+    @DeleteMapping(value = "/deleteByZipAndCountry/{zip}/{country}")
+
     public String deleteByZipAndCountry(
             @ApiParam(value = "Zip of the location", required = true) @PathVariable("zip") String zip,
             @ApiParam(value = "Country of the location", required = true) @PathVariable("country") String country
     ) {
-        return country;// new ResponseEntity<>(new PersonaDto(), HttpStatus.BAD_REQUEST);
+        return "Borrando: "+country;
     }
 
 
@@ -65,25 +66,25 @@ public class WeatherController {
             value = "Update  el clima dependiendo de la locación y el país ",
             response = String.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Delete los datos del clima JSON"),})
-    @RequestMapping(value = "/putByZipAndCountry/{zip}/{country}", method = RequestMethod.PUT)
+            @ApiResponse(code = 200, message = "Update los datos del clima JSON"),})
+    @PutMapping(value = "/putByZipAndCountry/{zip}/{country}")
     public String putByZipAndCountry(
             @ApiParam(value = "Zip of the location", required = true) @PathVariable("zip") String zip,
             @ApiParam(value = "Country of the location", required = true) @PathVariable("country") String country
     ) {
-        return "Actualizando: "+country;// new ResponseEntity<>(new PersonaDto(), HttpStatus.BAD_REQUEST);
+        return "Actualizando: "+country;
     }
 
     @ApiOperation(
-            value = "POST  el clima dependiendo de la locación y el país ",
+            value = "Delete  el clima dependiendo de la locación y el país ",
             response = String.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Delete los datos del clima JSON"),})
-    @RequestMapping(value = "/postByZipAndCountry/{zip}/{country}", method = RequestMethod.POST)
+    @PostMapping(value = "/postByZipAndCountry/{zip}/{country}")
     public String postByZipAndCountry(
             @ApiParam(value = "Zip of the location", required = true) @PathVariable("zip") String zip,
             @ApiParam(value = "Country of the location", required = true) @PathVariable("country") String country
     ) {
-        return "Creando: "+country;// new ResponseEntity<>(new PersonaDto(), HttpStatus.BAD_REQUEST);
+        return "Creando: "+country;
     }
 }
