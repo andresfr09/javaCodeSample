@@ -20,7 +20,4 @@ class OperacionesTest {
         assertEquals(esperado,resultado);
     }
 
-    /*@Test
-    void main() {
-    }*/
 }

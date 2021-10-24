@@ -5,8 +5,18 @@ addons:
         organization: "andresfr09"
         token:
             secure: WzDxQ22+Pm29i9q3srshZfM4vzlZ20LLoqGVYUntWYa9e/iFg53KoPByPoA4vDh2Ybf0N4P2Tx0Bfi2Cu4ZYqL85Rl8v7QzIiHdCbfH4Coe9wZ8aaB9A26bsJCPXVyufmjy7C/9YMhbiqs/vRhnMOlREv0f18YV5m0M4cJYzzpxv+xzBYq4NBXDzK0n0AKM0B/kQ4xhwj1W8j1EM3Jn0IT8DtBn3dBm8yAgN3ZnMAVNO85PML6PvBo6xRC57tSeaGpBihpKmREMyQbCP5eJY8dumG2lpGpr1JjxwunDRmP+XFo3lzFfQnT+GPC6pevJP6iD2yqQJn2Y//plyPm/g3GOvtAdi0Nqest4RavjHzONUyU03aX6qU0Hy2kzaRbpPzCh+gXmSVy0ZGaJGgKdei7SkQW5arEd5eYNmasMYtE3tQ+afZ2BXvSpl5onusYhPkQy3Nny36eEk1X8/Tx4Nv5laFKuJddG9ixy9vSOeKK+xo5jqF5CjEHGExV53OzKOGNhYtA4c88MCIARl4YnXhMMEkjSxK/dFESEaLNi84B+ztO/8cjCCDO2j1CkXPz/DehFs6GSdpzO9np+Ygez13hPO9PzuEyzBWo/RXd9ZltU2dfReZS/l6a3DygBTmYZgzSf2qGcKEQI9aMom+zumqh0gAC1S+bybVg8jzLNm8TY=
-script:
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
+services:
+    - docker
+
+
 
 before_install:
   - chmod +x mvnw
+  - docker pull openjdk:15
+  - docker build -t spring-boot-docker .
+
+
+script:
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+    - docker run --name spring-boot-docker spring-boot-docker:latest

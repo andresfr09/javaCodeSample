@@ -53,7 +53,6 @@ public class WeatherController {
             @ApiResponse(code = 200, message = "Delete los datos del clima JSON"),})
 
     @DeleteMapping(value = "/deleteByZipAndCountry/{zip}/{country}")
-
     public String deleteByZipAndCountry(
             @ApiParam(value = "Zip of the location", required = true) @PathVariable("zip") String zip,
             @ApiParam(value = "Country of the location", required = true) @PathVariable("country") String country
@@ -76,10 +75,10 @@ public class WeatherController {
     }
 
     @ApiOperation(
-            value = "Delete  el clima dependiendo de la locación y el país ",
+            value = "Post  el clima dependiendo de la locación y el país ",
             response = String.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Delete los datos del clima JSON"),})
+            @ApiResponse(code = 200, message = "Post los datos del clima JSON"),})
     @PostMapping(value = "/postByZipAndCountry/{zip}/{country}")
     public String postByZipAndCountry(
             @ApiParam(value = "Zip of the location", required = true) @PathVariable("zip") String zip,

@@ -16,7 +16,6 @@ public class LoggingController {
     Logger logger = LoggerFactory.getLogger(LoggingController.class);
     @GetMapping("/generarLogInfo")
     public String generarLogInfo() {
-
         //codigo para generar el log usando slf4j
         logger.info("Test log info");
         return "Ok";
@@ -38,7 +37,6 @@ public class LoggingController {
 
     @GetMapping("/generarLogDebug")
     public String generarLogDebug() {
-
         logger.debug("Test log debug");
         return "Ok";
     }

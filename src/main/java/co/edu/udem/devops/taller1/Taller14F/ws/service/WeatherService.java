@@ -22,8 +22,9 @@ public class WeatherService {
                 country,
                 API_KEY);
         WeatherRoot weatherRoot = restTemplate.getForObject(urlRestWS, WeatherRoot.class);
-        log.info(weatherRoot.toString());
-
+        if(weatherRoot != null){
+            log.info(weatherRoot.toString());
+        }
         return weatherRoot;
     }
 }
