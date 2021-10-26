@@ -1,28 +1,22 @@
 language: java
-
 addons:
-    sonarcloud:
-        organization: "andresfr09"
-        token:
-            secure: WzDxQ22+Pm29i9q3srshZfM4vzlZ20LLoqGVYUntWYa9e/iFg53KoPByPoA4vDh2Ybf0N4P2Tx0Bfi2Cu4ZYqL85Rl8v7QzIiHdCbfH4Coe9wZ8aaB9A26bsJCPXVyufmjy7C/9YMhbiqs/vRhnMOlREv0f18YV5m0M4cJYzzpxv+xzBYq4NBXDzK0n0AKM0B/kQ4xhwj1W8j1EM3Jn0IT8DtBn3dBm8yAgN3ZnMAVNO85PML6PvBo6xRC57tSeaGpBihpKmREMyQbCP5eJY8dumG2lpGpr1JjxwunDRmP+XFo3lzFfQnT+GPC6pevJP6iD2yqQJn2Y//plyPm/g3GOvtAdi0Nqest4RavjHzONUyU03aX6qU0Hy2kzaRbpPzCh+gXmSVy0ZGaJGgKdei7SkQW5arEd5eYNmasMYtE3tQ+afZ2BXvSpl5onusYhPkQy3Nny36eEk1X8/Tx4Nv5laFKuJddG9ixy9vSOeKK+xo5jqF5CjEHGExV53OzKOGNhYtA4c88MCIARl4YnXhMMEkjSxK/dFESEaLNi84B+ztO/8cjCCDO2j1CkXPz/DehFs6GSdpzO9np+Ygez13hPO9PzuEyzBWo/RXd9ZltU2dfReZS/l6a3DygBTmYZgzSf2qGcKEQI9aMom+zumqh0gAC1S+bybVg8jzLNm8TY=
+  sonarcloud:
+    organization: andresfr09
+    token:
+      secure: WzDxQ22+Pm29i9q3srshZfM4vzlZ20LLoqGVYUntWYa9e/iFg53KoPByPoA4vDh2Ybf0N4P2Tx0Bfi2Cu4ZYqL85Rl8v7QzIiHdCbfH4Coe9wZ8aaB9A26bsJCPXVyufmjy7C/9YMhbiqs/vRhnMOlREv0f18YV5m0M4cJYzzpxv+xzBYq4NBXDzK0n0AKM0B/kQ4xhwj1W8j1EM3Jn0IT8DtBn3dBm8yAgN3ZnMAVNO85PML6PvBo6xRC57tSeaGpBihpKmREMyQbCP5eJY8dumG2lpGpr1JjxwunDRmP+XFo3lzFfQnT+GPC6pevJP6iD2yqQJn2Y//plyPm/g3GOvtAdi0Nqest4RavjHzONUyU03aX6qU0Hy2kzaRbpPzCh+gXmSVy0ZGaJGgKdei7SkQW5arEd5eYNmasMYtE3tQ+afZ2BXvSpl5onusYhPkQy3Nny36eEk1X8/Tx4Nv5laFKuJddG9ixy9vSOeKK+xo5jqF5CjEHGExV53OzKOGNhYtA4c88MCIARl4YnXhMMEkjSxK/dFESEaLNi84B+ztO/8cjCCDO2j1CkXPz/DehFs6GSdpzO9np+Ygez13hPO9PzuEyzBWo/RXd9ZltU2dfReZS/l6a3DygBTmYZgzSf2qGcKEQI9aMom+zumqh0gAC1S+bybVg8jzLNm8TY=
 sudo: required
 services:
-    - docker
-
-
+- docker
 deploy:
   provider: heroku
   api_key:
-    secure: 8d80a4ca-f442-4543-b84a-3fbff43321d9
+    secure: KHX+GQ4h9J6rwFAOf2iNJDQM3puDGpB3hNtKKgHQKa4TycAw78RCH8ityPXPycj/tgnavT5xCCaaarESEQ7TNEtv8ZR39daSjVpTqxqQ0OnSQvfZ4xc98ya6meN1Zgdz0+nNf+MMVTo9WK427SbwGage4TsPATcAE7vwVf6oJG3lhvN2qnLU4Fe/7mJ/DD8JD+n6IpfFHbIG+Qze71CA0qQ8tiY6Xq5hKyzNNl54wUrxUgny+XBLF6X5mP2zcNnO8+Kz+di6MA9vMPpZFVQshZNW+0uq6XaEXKiRBadHh0LAfbo51d6yAY7SYdfpVZJojE/vCbCAgQQZoYLjRTv06taJmyfX7etePRdpVJNXG10BSAJqpjIJmOxsSAbd6NMwPhDjWWPF1r1IlqQitRUBxfOVEnZyYUicaXThBgPzJ8u8lrwfa/yJ6lNvDWuM/Qrh/MTI2FO2e75cEQjJk2SvgAxkC5VwKvDT9Dx1e+IApynKm1wW+rmQ+bfwS4scL85YiC3BsnwaQEhcOoEoMjymfSmA9OyMtQk6LkJa6GTtL91Cl3OFFEpWV2DUs5XAiCHrnXj2e2jo2lgpxYfBlw+fSDMFs46wyeCbVajDYK4IVeswEvntv6uKSbkNcAUbaOaQf+NnlJasMal5/JIGaiLptc4Di4H/eqvZ0XiacyrRgIk=
   app: taller1finaldevops
   on: api-rest-feature
-
 before_install:
-  - chmod +x mvnw
-  - docker pull openjdk:15
-  - docker build -t spring-boot-docker .
-
-
+- chmod +x mvnw
+- docker pull openjdk:15
+- docker build -t spring-boot-docker .
 script:
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-    - docker run --name spring-boot-docker spring-boot-docker:latest
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+- docker run --name spring-boot-docker spring-boot-docker:latest
