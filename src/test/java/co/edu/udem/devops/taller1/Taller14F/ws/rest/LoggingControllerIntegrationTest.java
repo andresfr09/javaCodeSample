@@ -27,7 +27,6 @@ class LoggingControllerIntegrationTest {
         mvc.perform(get("/generarLogInfo")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-        //.andExpect((ResultMatcher) content().string("Ok"))
         ;
     }
 
@@ -36,7 +35,6 @@ class LoggingControllerIntegrationTest {
         mvc.perform(get("/generarLogError")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-        //.andExpect((ResultMatcher) content().string("Ok"))
         ;
     }
 
@@ -45,7 +43,6 @@ class LoggingControllerIntegrationTest {
         mvc.perform(get("/generarLogWarning")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-        //.andExpect((ResultMatcher) content().string("Ok"))
         ;
     }
 
@@ -56,7 +53,6 @@ class LoggingControllerIntegrationTest {
         mvc.perform(get("/generarLogDebug")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                //.andExpect((ResultMatcher) content().string("Ok"))
                 ;
     }
 

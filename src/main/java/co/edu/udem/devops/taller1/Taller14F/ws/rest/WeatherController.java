@@ -1,5 +1,6 @@
 package co.edu.udem.devops.taller1.Taller14F.ws.rest;
 
+import co.edu.udem.devops.taller1.Taller14F.ws.models.WeatherDTO;
 import co.edu.udem.devops.taller1.Taller14F.ws.service.WeatherService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -42,7 +43,7 @@ public class WeatherController {
                 return new ResponseEntity<>("No se encontro info", HttpStatus.NOT_FOUND);
             }
         }
-        return new ResponseEntity<>(new PersonaDto(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new WeatherDTO(), HttpStatus.BAD_REQUEST);
     }
 
 

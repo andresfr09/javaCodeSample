@@ -14,14 +14,6 @@ before_install:
   - docker pull openjdk:15
   - docker build -t spring-boot-docker .
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: 8d80a4ca-f442-4543-b84a-3fbff43321d9
-  app:
-    api-rest-feature: taller1finaldevops
-  on: api-rest-feature
-
 
 script:
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
