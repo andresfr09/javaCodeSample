@@ -9,6 +9,14 @@ sudo: required
 services:
     - docker
 
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: 8d80a4ca-f442-4543-b84a-3fbff43321d9
+  app: taller1finaldevops
+  on: api-rest-feature
+
 before_install:
   - chmod +x mvnw
   - docker pull openjdk:15
