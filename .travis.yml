@@ -31,19 +31,19 @@ before_install:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   #- echo "asdasdasdasd" | docker login -u "asdasd" --password-stdin
-  - docker build -t 1037646031/tallerdevops4f -f Dockerfile.prod .
+  - docker build -t 1037646031/app-name -f Dockerfile.prod .
   #- pushear la imagen del proyecto spring-boot-docker al usuario propio en dockerhub
-  - docker push 1037646031/tallerdevops4f
+  - docker push 1037646031/app-name
   #- loguear a heroku con CLI
   #- (
   #  echo "$HEROKU_CREDENTIALS_EMAIL"
   #  echo "$HEROKU_CREDENTIALS_PASSWORD"
   #  ) | heroku login
   #- ("andresr1122@gmail.com" "Kmzwayw1aa..") | heroku login
-  #- heroku login
-  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-  - docker tag $DOCKER_USERNAME/tallerdevops4f registry.heroku.com/tallerdevops4f/web
-  - docker push $DOCKER_USERNAME/tallerdevops4f
+  - heroku login
+  #- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  - docker tag $DOCKER_USERNAME/app-name registry.heroku.com/tallerdevops4f/web
+  - docker push 1037646031/app-name
   #- pushear la imagen a heroku vía docker
   #- heroku stack:set container --app tallerdevops4f
   #- heroku container:login
