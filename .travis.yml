@@ -9,27 +9,27 @@ services:
 - docker
 
 before_install:
-- chmod +x mvnw
-- docker pull openjdk:15
-- docker build -t spring-boot-docker .
+#- chmod +x mvnw
+#- docker pull openjdk:15
+#- docker build -t spring-boot-docker .
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - wget -qO- https://toolbelt.heroku.com/install.sh | sh
 - echo "$HEROKU_API_KEY" | docker login --username="$HEROKU_USERNAME" --password-stdin registry.heroku.com
 -
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t $DOCKER_USERNAME/dummy_name -f Dockerfile .
+  - docker build -t $DOCKER_USERNAME/dummy_name -f Dockerfile.dev .
   - docker push $DOCKER_USERNAME/dummy_name
   - echo "$HEROKU_API_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
   - docker images
-  - docker build -t $DOCKER_USERNAME/$HEROKU_APP_NAME -f Dockerfile.prod .
+  - docker build -t $DOCKER_USERNAME/$HEROKU_APP_NAME -f Dockerfile .
   - docker tag $DOCKER_USERNAME/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
   - docker push $DOCKER_USERNAME/$HEROKU_APP_NAME
   - heroku container:push web --app $HEROKU_APP_NAME
   - heroku container:release web --app $HEROKU_APP_NAME
   ##- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   #- echo "asdasdasdasd" | docker login -u "asdasd" --password-stdin
-  ##- docker build -t 1037646031/app-name -f Dockerfile.prod .
+  ##- docker build -t 1037646031/app-name -f Dockerfile.dev.prod .
   #- pushear la imagen del proyecto spring-boot-docker al usuario propio en dockerhub
   ##- docker push 1037646031/app-name
   #- loguear a heroku con CLI
