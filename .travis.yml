@@ -31,9 +31,9 @@ before_install:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   #- echo "asdasdasdasd" | docker login -u "asdasd" --password-stdin
-  - docker build -t 1037646031/app-name -f Dockerfile.prod .
+  - docker build -t 1037646031/tallerdevops4f -f Dockerfile.prod .
   #- pushear la imagen del proyecto spring-boot-docker al usuario propio en dockerhub
-  - docker push 1037646031/app-name
+  - docker push 1037646031/tallerdevops4f
   #- loguear a heroku con CLI
   #- (
   #  echo "$HEROKU_CREDENTIALS_EMAIL"
