@@ -23,41 +23,45 @@ before_install:
 - chmod +x mvnw
 - docker pull openjdk:15
 - docker build -t spring-boot-docker .
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+- echo "$HEROKU_API_KEY" | docker login --username="$HEROKU_USERNAME" --password-stdin registry.heroku.com
 #script:
 #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 #- docker run --name spring-boot-docker spring-boot-docker:latest
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  ##- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   #- echo "asdasdasdasd" | docker login -u "asdasd" --password-stdin
-  - docker build -t 1037646031/app-name -f Dockerfile.prod .
+  ##- docker build -t 1037646031/app-name -f Dockerfile.prod .
   #- pushear la imagen del proyecto spring-boot-docker al usuario propio en dockerhub
-  - docker push 1037646031/app-name
+  ##- docker push 1037646031/app-name
   #- loguear a heroku con CLI
   #- (
   #  echo "$HEROKU_CREDENTIALS_EMAIL"
   #  echo "$HEROKU_CREDENTIALS_PASSWORD"
   #  ) | heroku login
   #- ("andresr1122@gmail.com" "Kmzwayw1aa..") | heroku login
-  - heroku login
+  ##- heroku login
   #- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
   #- docker tag $DOCKER_USERNAME/app-name registry.heroku.com/tallerdevops4f/web
   #- docker push 1037646031/app-name
   #- pushear la imagen a heroku vía docker
-  - heroku stack:set container --app tallerdevops4f
-  - heroku container:login
-  - heroku container:push web --app tallerdevops4f
+  ##- heroku stack:set container --app tallerdevops4f
+  ##- heroku container:login
+  ##- heroku container:push web --app tallerdevops4f
   #release app
-  - heroku container:release web --app tallerdevops4f
+  ##- heroku container:release web --app tallerdevops4f
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t $DOCKER_USERNAME/$HEROKU_APP_NAME -f Dockerfile .
+  - echo "$HEROKU_API_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  - docker images
+  - docker tag $DOCKER_USERNAME/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker push $DOCKER_USERNAME/$HEROKU_APP_NAME
+  - heroku container:push web --app $HEROKU_APP_NAME
+  - heroku container:release web --app $HEROKU_APP_NAME
 
 
-
-    #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    #- docker build -t travis-ci-build-stages-demo -f Dockerfile.dev .
-    #- docker images
-    #- docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/travis-ci-build-stages-demo
-    #- docker build -t juanpablorl/sample-devops-docker -f Dockerfile .
     #- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
     #- docker images
     #- docker tag $DOCKER_USERNAME/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
