@@ -19,6 +19,7 @@ before_install:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t $DOCKER_USERNAME/dummy_name -f Dockerfile .
+  - docker push $DOCKER_USERNAME/dummy_name
   - echo "$HEROKU_API_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
   - docker images
   - docker build -t $DOCKER_USERNAME/$HEROKU_APP_NAME -f Dockerfile.prod .
