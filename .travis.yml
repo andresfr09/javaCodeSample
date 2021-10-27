@@ -42,11 +42,11 @@ after_success:
   #- ("andresr1122@gmail.com" "Kmzwayw1aa..") | heroku login
   - heroku login
   #- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-  - docker tag $DOCKER_USERNAME/app-name registry.heroku.com/tallerdevops4f/web
-  - docker push 1037646031/app-name
+  #- docker tag $DOCKER_USERNAME/app-name registry.heroku.com/tallerdevops4f/web
+  #- docker push 1037646031/app-name
   #- pushear la imagen a heroku vía docker
-  #- heroku stack:set container --app tallerdevops4f
-  #- heroku container:login
+  - heroku stack:set container --app tallerdevops4f
+  - heroku container:login
   - heroku container:push web --app tallerdevops4f
   #release app
   - heroku container:release web --app tallerdevops4f
