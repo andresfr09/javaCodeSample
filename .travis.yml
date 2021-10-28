@@ -12,14 +12,14 @@ notifications:
     rooms:
       - clandestinos-espacio:T6BMUCJ6HJliKkPoBIVZbSX0#devops
     if: branch = monitoreo
-    on_success: always # default: change
-    on_failure: always # default: always
+    on_success: always
+    on_failure: always
   email:
     recipients:
-      - andresr1122@gmail.com
-      - juanesteban941@gmail.com
-      on_success: always # default: change
-      on_failure: always # default: always
+    - andresr1122@gmail.com
+    - juanesteban941@gmail.com
+    on_success: always
+    on_failure: always
 before_install:
 - chmod +x mvnw
 - chmod +x start_crashtest.sh
