@@ -7,55 +7,38 @@ addons:
 sudo: required
 services:
 - docker
-
+notifications:
+  slack:
+    rooms:
+      - clandestinos-espacio:T6BMUCJ6HJliKkPoBIVZbSX0#devops
+    if: branch = monitoreo
+    on_success: always # default: change
+    on_failure: always # default: always
+  email:
+    recipients:
+      - andresr1122@gmail.com
+      - juanesteban941@gmail.com
+      on_success: always # default: change
+      on_failure: always # default: always
 before_install:
 - chmod +x mvnw
 - chmod +x start_crashtest.sh
-#- docker pull openjdk:15
-#- docker build -t spring-boot-docker .
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-- echo "$HEROKU_API_KEY" | docker login --username="$HEROKU_USERNAME" --password-stdin registry.heroku.com
-
+- echo "$HEROKU_API_KEY" | docker login --username="$HEROKU_USERNAME" --password-stdin
+  registry.heroku.com
 jobs:
   include:
-    - stage: deploy
-      script: ./start_crashtest.sh
-
+  - stage: deploy
+    script: "./start_crashtest.sh"
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t $DOCKER_USERNAME/dummy_name -f Dockerfile.dev .
-  - docker push $DOCKER_USERNAME/dummy_name
-  - echo "$HEROKU_API_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-  - docker images
-  - docker build -t $DOCKER_USERNAME/$HEROKU_APP_NAME -f Dockerfile .
-  - docker tag $DOCKER_USERNAME/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
-  - docker push $DOCKER_USERNAME/$HEROKU_APP_NAME
-  - heroku container:push web --app $HEROKU_APP_NAME
-  - heroku container:release web --app $HEROKU_APP_NAME
-  ##- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  #- echo "asdasdasdasd" | docker login -u "asdasd" --password-stdin
-  ##- docker build -t 1037646031/app-name -f Dockerfile.dev.prod .
-  #- pushear la imagen del proyecto spring-boot-docker al usuario propio en dockerhub
-  ##- docker push 1037646031/app-name
-  #- loguear a heroku con CLI
-  #- (
-  #  echo "$HEROKU_CREDENTIALS_EMAIL"
-  #  echo "$HEROKU_CREDENTIALS_PASSWORD"
-  #  ) | heroku login
-  #- ("andresr1122@gmail.com" "Kmzwayw1aa..") | heroku login
-  ##- heroku login
-  #- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-  #- docker tag $DOCKER_USERNAME/app-name registry.heroku.com/tallerdevops4f/web
-  #- docker push 1037646031/app-name
-  #- pushear la imagen a heroku vía docker
-  ##- heroku stack:set container --app tallerdevops4f
-  ##- heroku container:login
-  ##- heroku container:push web --app tallerdevops4f
-  #release app
-  ##- heroku container:release web --app tallerdevops4f
-
-
-
-
-
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker build -t $DOCKER_USERNAME/dummy_name -f Dockerfile.dev .
+- docker push $DOCKER_USERNAME/dummy_name
+- echo "$HEROKU_API_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+- docker images
+- docker build -t $DOCKER_USERNAME/$HEROKU_APP_NAME -f Dockerfile .
+- docker tag $DOCKER_USERNAME/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
+- docker push $DOCKER_USERNAME/$HEROKU_APP_NAME
+- heroku container:push web --app $HEROKU_APP_NAME
+- heroku container:release web --app $HEROKU_APP_NAME
