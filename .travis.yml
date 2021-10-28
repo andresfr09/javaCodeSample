@@ -11,7 +11,7 @@ notifications:
   slack:
     rooms:
       - clandestinos-espacio:T6BMUCJ6HJliKkPoBIVZbSX0#devops
-    if: branch = monitoreo
+    if: branch = api-rest-feature
     on_success: always
     on_failure: always
   email:
